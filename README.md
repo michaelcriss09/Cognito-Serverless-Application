@@ -6,7 +6,7 @@ Same task, new challenges! Serverless Application using Amazon Cognito and Textr
 
 This project allow the following architecture:
 
-Pending
+![Arquitectura AWS](https://i.postimg.cc/nhNKLry2/Diagrama-sin-t-tulo.jpg)
 
 # Description
 
