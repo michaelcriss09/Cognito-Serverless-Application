@@ -10,7 +10,7 @@ This project allow the following architecture:
 
 # Description
 
-This project consists of a structured sign-in / sign-up system that, once registered, allows you to insert an image of your passport and automatically complete your profile data.
+This project consists of a structured sign-in/sign-up system based on AWS Cognito, once registered, allows you to insert an image of your passport and automatically complete your profile data.
 
 The system is built on a serverless architecture on AWS, utilizing services such as AWS Textract for character recognition, Lambda for serverless processing, S3 for image storage and static web host, API Gateway for request management and DynamoDB as database.
 
