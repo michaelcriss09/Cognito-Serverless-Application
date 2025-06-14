@@ -1,0 +1,104 @@
+:root {
+  --primary: #2c3e50;
+  --background: #f4f6f8;
+  --card-bg: #ffffff;
+  --border-color: #d0d6dc;
+  --icon-color: #5c6b77;
+  --hover-bg: #eef3f7;
+}
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: var(--primary);
+}
+.container {
+  background-color: var(--card-bg);
+  padding: 40px 32px;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  width: 340px;
+}
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.description {
+  font-size: 14px;
+  color: #4a4a4a;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+.dni-box {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 24px;
+  border: 1.5px solid var(--border-color);
+  border-radius: 12px;
+  background-color: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.dni-box:hover {
+  background-color: var(--hover-bg);
+}
+.dni-box svg {
+  width: 64px;
+  height: 64px;
+  fill: var(--icon-color);
+  transition: transform 0.3s ease;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.dni-box:hover svg {
+  transform: translate(-50%, -50%) scale(1.05);
+}
+#dni-upload {
+  display: none;
+}
+#preview {
+  max-width: 160px;
+  max-height: 160px;
+  border-radius: 8px;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 1;
+  position: relative;
+}
+button#saveregister {
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  border: none;
+  background-color: var(--primary);
+  color: white;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  width: 100%;
+}
+button#saveregister:disabled {
+  background-color: #9bb2c4;
+  cursor: not-allowed;
+}
+#statusMessage {
+  margin-top: 14px;
+  font-weight: 600;
+  min-height: 24px;
+  color: green;
+}
