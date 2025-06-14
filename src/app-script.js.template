@@ -1,4 +1,4 @@
-var API_ENDPOINT = "https://8gvz6b88e8.execute-api.us-east-2.amazonaws.com/my_stage";
+var API_ENDPOINT = "HERE";
 
 const fileInput = document.getElementById("dni-upload");
 const previewImg = document.getElementById("preview");
@@ -14,11 +14,9 @@ fileInput.addEventListener("change", () => {
     return;
   }
 
-  // Mostrar preview
   previewImg.src = URL.createObjectURL(file);
   previewImg.style.display = "block";
 
-  // Habilitar botón
   submitBtn.disabled = false;
   statusMessage.textContent = "";
 });
@@ -49,6 +47,7 @@ submitBtn.addEventListener("click", () => {
         statusMessage.style.color = "green";
         statusMessage.textContent = "Register Data Saved!";
         submitBtn.disabled = false;
+        window.location.href= "profile.html"
       },
       error: () => {
         statusMessage.style.color = "red";

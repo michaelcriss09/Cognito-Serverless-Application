@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic User Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="profile-page">
+    <div class="profile-container">
+        <div class="profile-title">User Profile</div>
+
+        <div class="profile-field">
+            <label for="surname">Surname</label>
+            <input type="text" id="surname" disabled>
+        </div>
+
+        <div class="profile-field">
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" disabled>
+        </div>
+
+        <div class="profile-field">
+            <label for="country">Country</label>
+            <input type="text" id="country" disabled>
+        </div>
+
+        <div class="profile-field">
+            <label for="born_date">Born Date</label>
+            <input type="date" id="born_date" disabled>
+        </div>
+
+        <div class="profile-actions">
+            <button id="editBtn"><i class="fas fa-edit"></i> Edit</button>
+            <button id="saveBtn" disabled><i class="fas fa-save"></i> Save</button>
+        </div>
+    </div>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script src="profile-script.js"></script>
+
+</body>
+</html>

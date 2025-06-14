@@ -1,0 +1,59 @@
+const API_ENDPOINT = "HERE";
+
+  const editBtn = document.getElementById('editBtn');
+  const saveBtn = document.getElementById('saveBtn');
+  const inputs = document.querySelectorAll('input');
+
+  function loadUserProfile() {
+    $.ajax({
+      url: API_ENDPOINT + '/GET',
+      type: 'GET',
+      contentType: 'application/json',
+      success: function(data) {
+        $('#surname').val(data.surname);
+        $('#last_name').val(data.last_name);
+        $('#country').val(data.country);
+        $('#born_date').val(data.born_date);
+      },
+      error: function() {
+        alert("Error loading user profile.");
+      }
+    });
+  }
+
+  $(document).ready(function() {
+    loadUserProfile();
+  });
+
+
+  editBtn.addEventListener('click', () => {
+    inputs.forEach(input => input.disabled = false);
+    saveBtn.disabled = false;
+    editBtn.disabled = true;
+  });
+
+
+  saveBtn.addEventListener('click', () => {
+    const updatedData = {
+      surname: $('#surname').val(),
+      last_name: $('#last_name').val(),
+      country: $('#country').val(),
+      born_date: $('#born_date').val()
+    };
+
+    $.ajax({
+      url: API_ENDPOINT + '/POST',
+      type: 'POST',
+      data: JSON.stringify(updatedData),
+      contentType: 'application/json',
+      success: function() {
+        inputs.forEach(input => input.disabled = true);
+        saveBtn.disabled = true;
+        editBtn.disabled = false;
+        alert('Profile saved successfully!');
+      },
+      error: function() {
+        alert('Error saving profile.');
+      }
+    });
+  });
