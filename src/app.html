@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Identity Verification & Profile Generator</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+    <div class="container" id="upload-container">
+        <div class="title">Verify Your Identity</div>
+        <div class="description">
+            Please provide a photo of your passport to fulfill the identity verification requirements.
+        </div>
+
+        <label for="dni-upload" class="dni-box" title="Click to upload your ID image">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4
+                     c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm0 2v12h16V6H4zm2 2h5v1H6V8zm0 2h5v1H6v-1zm0 2h3v1H6v-1zm10-4c1.1 0 2 .9 2 2
+                     s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm-2 6h4v1h-4v-1z" />
+            </svg>
+            <img id="preview" alt="Image preview" style="display:none;" />
+        </label>
+        <input type="file" id="dni-upload" accept="image/*" />
+
+        <button id="saveregister" disabled>Submit</button>
+        <div id="statusMessage"></div>
+    </div>
+
+    <div class="container" id="profile-container" style="display:none;">
+        <h1>Dynamic Profile Generator</h1>
+
+        <div class="form-group">
+            <input id="surname" type="text" placeholder="Surname">
+            <input id="lastname" type="text" placeholder="Last Name">
+            <input id="country" type="text" placeholder="Country">
+            <input id="birthdate" type="date">
+        </div>
+
+        <div class="button-group">
+            <button id="generateForm">Generate</button>
+        </div>
+
+        <div class="profiles" id="profiles"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
