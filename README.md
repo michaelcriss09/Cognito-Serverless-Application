@@ -6,7 +6,7 @@ Same task, new challenges! Dynamic Profile Generator based on Amazon Cognito and
 
 This project allow the following architecture:
 
-![Arquitectura AWS](https://i.postimg.cc/BnWQqxtC/Diagrama-sin-t-tulo.jpg)
+![Arquitectura AWS](https://i.postimg.cc/0jYYRyK3/Diagrama-actualizado.png)
 
 # Description
 
