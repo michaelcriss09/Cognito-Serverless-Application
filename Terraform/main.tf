@@ -110,18 +110,18 @@ resource "aws_dynamodb_table" "dynamodb" {
 }
 
 module "cloudfront" {
-origin_id = local.s3_origin_id
-domain_name = module.s3_bucket.bucket_domain_name
-default_root_object = var.htmlfile
-source = "./modules/cloudfront"
+  origin_id           = local.s3_origin_id
+  domain_name         = module.s3_bucket.bucket_domain_name
+  default_root_object = var.htmlfile
+  source              = "./modules/cloudfront"
 
 }
 
 module "cognito" {
-  user_pool_name = var.user_pool_name
-  user_pool_client_name = var.user_pool_client_name
-  call_back_urls = ["${module.cloudfront.cloudfront_url}/app.html"]
-  logout_urls = ["${module.cloudfront.cloudfront_url}/logout"]
+  user_pool_name           = var.user_pool_name
+  user_pool_client_name    = var.user_pool_client_name
+  call_back_urls           = ["${module.cloudfront.cloudfront_url}/app.html"]
+  logout_urls              = ["${module.cloudfront.cloudfront_url}/logout"]
   cognito_user_pool_domain = var.cognito_user_pool_domain
 
   source = "./modules/cognito"

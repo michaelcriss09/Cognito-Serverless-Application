@@ -31,8 +31,8 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
     Version = "2012-10-17",
     Statement = [
       {
-        Sid       = "AllowCloudFrontAccessViaOAC"
-        Effect    = "Allow"
+        Sid    = "AllowCloudFrontAccessViaOAC"
+        Effect = "Allow"
         Principal = {
           Service = "cloudfront.amazonaws.com"
         }
@@ -60,27 +60,27 @@ resource "null_resource" "prepare_app_js" {
 resource "aws_s3_object" "jsfile" {
   bucket       = aws_s3_bucket.static_site.bucket
   key          = var.jsfile
-  source = "${path.module}/../../../src/${var.jsfile}"
+  source       = "${path.module}/../../../src/${var.jsfile}"
   content_type = "application/javascript"
 }
 
 resource "aws_s3_object" "htmlfile" {
   bucket       = aws_s3_bucket.static_site.bucket
   key          = var.htmlfile
-  source = "${path.module}/../../../src/${var.htmlfile}"
+  source       = "${path.module}/../../../src/${var.htmlfile}"
   content_type = "text/html"
 }
 
 resource "aws_s3_object" "cssfile" {
   bucket       = aws_s3_bucket.static_site.bucket
   key          = var.cssfile
-  source = "${path.module}/../../../src/${var.cssfile}"
+  source       = "${path.module}/../../../src/${var.cssfile}"
   content_type = "text/css"
 }
 
 resource "aws_s3_object" "uploads" {
-  bucket = aws_s3_bucket.static_site.bucket
-  key = "uploads/"
-  acl = "private"  
+  bucket  = aws_s3_bucket.static_site.bucket
+  key     = "uploads/"
+  acl     = "private"
   content = ""
 }

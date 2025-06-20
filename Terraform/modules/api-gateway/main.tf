@@ -43,10 +43,10 @@ resource "aws_api_gateway_integration" "put_integration" {
 }
 
 # OPTIONS method 
-resource "aws_api_gateway_method" "options" {    
+resource "aws_api_gateway_method" "options" {
   rest_api_id   = aws_api_gateway_rest_api.rest-api.id
   resource_id   = aws_api_gateway_rest_api.rest-api.root_resource_id
-  http_method   = var.options_m_name   # http_method = "POST"
+  http_method   = var.options_m_name # http_method = "POST"
   authorization = "NONE"
 }
 

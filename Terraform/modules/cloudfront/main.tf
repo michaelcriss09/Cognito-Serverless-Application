@@ -20,7 +20,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   enabled             = true
   is_ipv6_enabled     = true
   comment             = "Some comment"
-  default_root_object =  var.default_root_object  #"app.html"
+  default_root_object = var.default_root_object #"app.html"
 
   default_cache_behavior {
     allowed_methods  = ["HEAD", "DELETE", "POST", "GET", "OPTIONS", "PUT", "PATCH"]
@@ -29,7 +29,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
 
     forwarded_values {
       query_string = false
-      headers = ["Origin"]
+      headers      = ["Origin"]
 
       cookies {
         forward = "none"

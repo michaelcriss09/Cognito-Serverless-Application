@@ -74,17 +74,17 @@ variable "billing_mode" {
 }
 
 variable "user_pool_name" {
-  type = string
+  type    = string
   default = "app_user_pool"
 }
 
 variable "user_pool_client_name" {
-  type = string
+  type    = string
   default = "app_user_pool_client"
 }
 
 variable "cognito_user_pool_domain" {
-  type = string
+  type    = string
   default = "myapp-auth-24213"
 
 }

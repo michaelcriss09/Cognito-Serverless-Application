@@ -8,9 +8,9 @@ locals {
     },
     updateData = {
       function_name = "updateData"
-      filename = "updateData.zip"
-      handler = "updateData.lambda_handler"
-      runtime = "python3.9"
+      filename      = "updateData.zip"
+      handler       = "updateData.lambda_handler"
+      runtime       = "python3.9"
     }
   }
 

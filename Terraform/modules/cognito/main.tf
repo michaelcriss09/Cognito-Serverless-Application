@@ -29,7 +29,7 @@ resource "aws_cognito_user_pool_client" "client" {
   supported_identity_providers = ["COGNITO"]
 
   callback_urls = var.call_back_urls
-  logout_urls = var.logout_urls
+  logout_urls   = var.logout_urls
 
   allowed_oauth_flows                  = ["code"]
   allowed_oauth_flows_user_pool_client = true
