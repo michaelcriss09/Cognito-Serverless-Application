@@ -159,3 +159,17 @@ button:hover {
     background-color: #cc0000;
     transform: scale(1.1);
 }
+
+#returnButton {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#returnButton:hover {
+    background-color: #d32f2f;
+}

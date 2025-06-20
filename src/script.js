@@ -1,4 +1,4 @@
-var API_ENDPOINT = "https://7b86fl6s9c.execute-api.us-east-2.amazonaws.com/my_stage";
+var API_ENDPOINT = "https://669o785atd.execute-api.us-east-2.amazonaws.com/my_stage";
 
 let currentUserId = null;
 
@@ -6,6 +6,8 @@ const fileInput = document.getElementById("dni-upload");
 const previewImg = document.getElementById("preview");
 const submitBtn = document.getElementById("saveregister");
 const statusMessage = document.getElementById("statusMessage");
+const profileMessage = document.getElementById("profileMessage");
+const profilesDiv = document.getElementById("profiles");
 
 fileInput.addEventListener("change", () => {
     const file = fileInput.files[0];
@@ -46,7 +48,6 @@ submitBtn.addEventListener("click", () => {
             data: JSON.stringify(inputData),
             contentType: "application/json; charset=utf-8",
             success: (response) => {
-
                 currentUserId = response.userId;
 
                 statusMessage.style.color = "green";
@@ -104,10 +105,29 @@ document.getElementById("generateForm").onclick = function() {
         data: JSON.stringify(updateData),
         contentType: 'application/json; charset=utf-8',
         success: function(response) {
-            alert('Profile updated successfully!');
+            profileMessage.style.color = "green";
+            profileMessage.textContent = "Register Generated!";
+
+            profilesDiv.innerHTML = `
+                <p><strong>Surname:</strong> ${surname}</p>
+                <p><strong>Last Name:</strong> ${lastname}</p>
+                <p><strong>Country:</strong> ${country}</p>
+                <p><strong>Birthdate:</strong> ${birthdate}</p>
+            `;
+
+            setTimeout(() => {
+                document.getElementById("profile-container").style.display = "none";
+                document.getElementById("preview-container").style.display = "flex";
+            }, 1000);
         },
         error: function() {
-            alert('Error updating profile.');
+            profileMessage.style.color = "red";
+            profileMessage.textContent = "Error saving data.";
+            profilesDiv.innerHTML = "";
         }
     });
 }
+
+document.getElementById('returnButton').addEventListener('click', function() {
+    window.location.reload();
+});
