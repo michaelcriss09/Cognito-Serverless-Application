@@ -153,6 +153,19 @@ def lambda_handler(event, context):
             }
         )
         
+
+        """
+        
+        Delete Image after processing data, needed to delete s3 resouces with
+        terraform destroy. Terraform does not have control about resources 
+        created outside the platform
+
+        """
+
+        response = s3.Object(bucket_name, file_name).delete()
+
+        print(response)
+
         return {
             'statusCode': 200,
             'headers': {'Access-Control-Allow-Origin': '*'},

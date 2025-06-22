@@ -5,3 +5,7 @@ output "cloudfront_arn" {
 output "cloudfront_url" {
   value = "https://${aws_cloudfront_distribution.s3_distribution.domain_name}"
 }
+
+output "cloudfront_domain" {
+  value = aws_cloudfront_distribution.s3_distribution.domain_name
+}

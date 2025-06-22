@@ -123,6 +123,6 @@ module "cognito" {
   call_back_urls           = ["${module.cloudfront.cloudfront_url}/app.html"]
   logout_urls              = ["${module.cloudfront.cloudfront_url}/logout"]
   cognito_user_pool_domain = var.cognito_user_pool_domain
-
+  region                   = var.region
   source = "./modules/cognito"
 }

@@ -18,3 +18,8 @@ variable "logout_urls" {
 variable "cognito_user_pool_domain" {
   type = string
 }
+
+variable  "region" {
+  type = string
+}
+
