@@ -45,3 +45,9 @@ resource "aws_cognito_user_pool_domain" "main" {
   user_pool_id = aws_cognito_user_pool.app_user_pool.id
   domain       = var.cognito_user_pool_domain
 }
+
+resource "aws_cognito_user_pool_ui_customization" "customized_ui" {
+  user_pool_id = aws_cognito_user_pool_domain.main.user_pool_id
+  css          = file("${path.module}/cognito_ui_src/custom.css")
+  image_file   = filebase64("${path.module}/cognito_ui_src/logo.png")
+}

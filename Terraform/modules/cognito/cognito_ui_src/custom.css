@@ -1,0 +1,53 @@
+.label-customizable {
+  color: #333333;
+  font-weight: 500;
+}
+
+.inputField-customizable {
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  height: 40px;
+}
+
+.inputField-customizable:focus {
+  border-color: #007bff;
+  outline: 0;
+}
+
+.submitButton-customizable {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 12px 20px;
+}
+
+.submitButton-customizable:hover {
+  background-color: #0056b3;
+}
+
+.errorMessage-customizable {
+  background-color: #fdecea;
+  color: #b71c1c;
+  padding: 8px;
+}
+
+.passwordCheck-notValid-customizable {
+  color: #d32f2f;
+}
+
+.passwordCheck-valid-customizable {
+  color: #2e7d32;
+}
+
+.idpButton-customizable {
+  background-color: #1a73e8;
+  color: white;
+  border-radius: 8px;
+  height: 40px;
+}
+
+.idpButton-customizable:hover {
+  background-color: #155ab6;
+}

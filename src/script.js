@@ -1,4 +1,4 @@
-var API_ENDPOINT = "https://wgiw80n9dh.execute-api.us-east-2.amazonaws.com/my_stage";
+var API_ENDPOINT = "https://y2a5basg1d.execute-api.us-east-2.amazonaws.com/my_stage";
 
 let currentUserId = null;
 
