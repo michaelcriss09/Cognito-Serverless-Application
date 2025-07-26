@@ -1,0 +1,61 @@
+pipeline{
+    agent any
+    environment{
+        AWS_REGION = 'us-east-2'
+        S3_BUCKET = 'dni-images-2415'
+        LAMBDA_DIR = './Terraform/lambdas/Functions'
+        TERRAFORM_DIR = './Terraform'
+        FRONTEND_DIR = './src'
+    }
+    stages{
+        stage('Terraform init & plan'){
+            dir("${env.TERRAFORM_DIR}"){
+                steps {
+                    sh '''
+                    terraform init
+                    terraform validate
+                    terraform plan -out=myplan
+                    ''' 
+                }
+            }
+        }
+
+        stage('Terraform apply'){
+            dir("${env.TERRAFORM_DIR}"){
+                steps {
+                    input "Confirm applying changes to terraform infraestructure"
+                    sh 'terraform apply -auto-approve myplan'
+                }
+            }
+        }
+
+        stage('Frontend deploy'){
+            dir("${env.FRONTEND_DIR}"){
+                steps {
+                    sh '''
+                    aws s3 sync . s3://$S3_BUCKET --delete
+
+                    '''
+                }
+            }
+        }
+
+        stage('Lambda deploy'){
+            dir("${env.LAMBDA_DIR}"){
+                steps {
+                    sh '''
+                    aws lambda update-function-code \
+                        --function-name insertData \
+                        --zip-file fileb://insertData.zip \
+                        --region $AWS_REGION
+
+                    aws lambda update-function-code \
+                        --function-name updateData \
+                        --zip-file fileb://updateData.zip \
+                        --region $AWS_REGION
+                    '''
+                }
+            }
+        }
+   }
+}
