@@ -1,61 +1,71 @@
-pipeline{
+pipeline {
     agent any
-    environment{
+    environment {
         AWS_REGION = 'us-east-2'
         S3_BUCKET = 'dni-images-2415'
-        LAMBDA_DIR = './Terraform/lambdas/Functions'
-        TERRAFORM_DIR = './Terraform'
-        FRONTEND_DIR = './src'
+        LAMBDA_DIR = 'Terraform/modules/lambdas/Functions'
+        TERRAFORM_DIR = 'Terraform'
+        FRONTEND_DIR = 'src'
+        AWS_ACCESS_KEY_ID = credentials('aws-access-key-id')
+        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
+        AWS_DEFAULT_REGION = 'us-east-2'
     }
-    stages{
-        stage('Terraform init & plan'){
-            dir("${env.TERRAFORM_DIR}"){
-                steps {
+    stages {
+        stage('Fetch Code') {
+            steps {
+                git branch: 'main', url: 'https://github.com/michaelcriss09/devops-aws-cognito-serverless-app.git'
+            }
+        }
+
+        stage('Terraform init & plan') {
+            steps {
+                dir("${env.TERRAFORM_DIR}") {
                     sh '''
-                    terraform init
-                    terraform validate
-                    terraform plan -out=myplan
-                    ''' 
+                        pwd
+                        ls -lr
+                        terraform init
+                        terraform validate
+                        terraform plan -out=myplan
+                    '''
                 }
             }
         }
 
-        stage('Terraform apply'){
-            dir("${env.TERRAFORM_DIR}"){
-                steps {
-                    input "Confirm applying changes to terraform infraestructure"
+        stage('Terraform apply') {
+            steps {
+                input "Confirm applying changes to terraform infraestructure"
+                dir("${env.TERRAFORM_DIR}") {
                     sh 'terraform apply -auto-approve myplan'
                 }
             }
         }
 
-        stage('Frontend deploy'){
-            dir("${env.FRONTEND_DIR}"){
-                steps {
+        stage('Frontend deploy') {
+            steps {
+                dir("${env.FRONTEND_DIR}") {
                     sh '''
-                    aws s3 sync . s3://$S3_BUCKET --delete
-
+                        aws s3 sync . s3://$S3_BUCKET --delete
                     '''
                 }
             }
         }
 
-        stage('Lambda deploy'){
-            dir("${env.LAMBDA_DIR}"){
-                steps {
+        stage('Lambda deploy') {
+            steps {
+                dir("${env.LAMBDA_DIR}") {
                     sh '''
-                    aws lambda update-function-code \
-                        --function-name insertData \
-                        --zip-file fileb://insertData.zip \
-                        --region $AWS_REGION
+                        aws lambda update-function-code \
+                            --function-name insertData \
+                            --zip-file fileb://insertData.zip \
+                            --region $AWS_REGION
 
-                    aws lambda update-function-code \
-                        --function-name updateData \
-                        --zip-file fileb://updateData.zip \
-                        --region $AWS_REGION
+                        aws lambda update-function-code \
+                            --function-name updateData \
+                            --zip-file fileb://updateData.zip \
+                            --region $AWS_REGION
                     '''
                 }
             }
         }
-   }
+    }
 }
